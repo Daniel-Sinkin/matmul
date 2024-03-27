@@ -6,6 +6,7 @@ Learning C Programming and SIMD intrinsics while implementing (somewhat) efficie
     * Main inspiration
         * George Hotz Stream of 2022-06-25.
             * https://www.youtube.com/watch?v=VgSQ1GOC86s
+            * https://github.com/tinygrad/tinygrad/tree/68ca4d4276718f84a23400e53fea6ee7a1e3114a/extra/gemm
     * General Performance
         * Handmade Hero 112 - A Mental Model of CPU Performance
             * https://www.youtube.com/watch?v=qin-Eps3U_E
@@ -28,6 +29,9 @@ Learning C Programming and SIMD intrinsics while implementing (somewhat) efficie
         * How to Write Function-Like Preprocessor Macros (C example)
             * https://www.youtube.com/watch?v=w3iXBUbq4NY
 * References
+    * ARM NEON intrinsics
+        * This is what Apple Silicone uses, so those are what we'll be implementing
+        * https://developer.arm.com/architectures/instruction-sets/intrinsics/#f:@navigationhierarchiessimdisa=[Neon]
     * Oracle Instruction Set Mapping: AVX2
         * https://docs.oracle.com/cd/E36784_01/html/E36859/gntae.html#scrolltoc
     * Intel SIMD Intrinsics
