@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "matrix.h" // Include the header file for matrix operations
+#include "matrix.h"
 
 const size_t M_ROWS = 2;
 const size_t M_COLS = 3;
