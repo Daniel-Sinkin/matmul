@@ -1,20 +1,25 @@
-# @GPT4
-
 # Compiler
 CC = gcc
 
 # Compilation flags
-# -Wall: Warnings
-# -Wextra: Extra Warnings 
-# -g: Debug Flag
-# -pedantic: Enforces strict ISO C, and warns on any non-standard practices.
-CFLAGS = -Wall -Wextra -g -pedantic
+# -Wall: Enables all compiler's warning messages
+# -Wextra: Enables extra warning messages
+# -g: Generates debug information to be used by GDB debugger
+# -pedantic: Ensures strict ISO compliance, warns on non-standard practices
+CFLAGS = -Wall -Wextra -g -pedantic -Iinclude
 
-# The name of the final executable that will be created.
-TARGET = program
+# The name of the final executable that will be created
+TARGET = build/program
+
+# Source and Object Directories
+SRC_DIR = src
+OBJ_DIR = build
+INC_DIR = include
 
 # Objects
-OBJS = main.o matrix.o
+# Specifies the object files that the program depends on. 
+# Now includes the path from the build directory
+OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/matrix.o
 
 # The default target. Typing 'make' with no argument will make the first target found in the
 # Makefile, which is the 'all' target in this case. This target depends on the $(TARGET), so
@@ -25,24 +30,18 @@ all: $(TARGET)
 # then compile and link them to create the final executable named $(TARGET). The $(CC) variable
 # is the compiler command, $(CFLAGS) are the compiler options, and $(OBJS) are the input object files.
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+        $(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
-# Rule to compile the main.c file into main.o object file. It specifies that main.o depends on
-# main.c and matrix.h. Whenever main.c or matrix.h changes, main.o will be recompiled.
-# The -c flag tells the compiler to generate object code, not an executable.
-main.o: main.c matrix.h
-	$(CC) $(CFLAGS) -c main.c
-
-# Rule to compile the matrix.c file into matrix.o object file. It specifies that matrix.o depends
-# on matrix.c and matrix.h. This ensures that changes in either file will trigger recompilation
-# of matrix.o.
-matrix.o: matrix.c matrix.h
-	$(CC) $(CFLAGS) -c matrix.c
+# Rule to compile the .c files into .o object files. Specifies that each .o file depends on its
+# corresponding .c file and on matrix.h. Whenever a .c file or matrix.h changes, the corresponding .o
+# file will be recompiled. The -c flag tells the compiler to generate object code, not an executable.
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+        $(CC) $(CFLAGS) -c $< -o $@
 
 # A special target to clean up the files that the make process creates.
-# It removes the executable and all object files. 
+# It removes the executable and all object files. 'rm -f' is used to force removal without prompting for confirmation.
 clean:
-	rm -f $(TARGET) $(OBJS)
+        rm -f $(OBJ_DIR)/*
 
 # Declaring phony targets. These are targets that are not filenames. Declaring these ensures
 # that make doesn't get confused by actual files named 'all' or 'clean'. It's good practice
