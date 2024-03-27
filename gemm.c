@@ -6,7 +6,7 @@
 
 static const int N = 4;
 
-#define BLOCK_SIZE 2
+#define BLOCK_SIZE 4
 
 float A[N * N];
 float B[N * N];
