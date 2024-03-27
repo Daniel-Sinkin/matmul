@@ -38,8 +38,6 @@ $(TARGET): $(OBJS)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
         $(CC) $(CFLAGS) -c $< -o $@
 
-# A special target to clean up the files that the make process creates.
-# It removes the executable and all object files. 'rm -f' is used to force removal without prompting for confirmation.
 clean:
         rm -f $(OBJ_DIR)/*
 
