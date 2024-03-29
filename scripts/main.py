@@ -6,7 +6,7 @@ against.
 import numpy as np
 
 
-def main():
+def check_dimensions():
     """Main"""
     _rng = np.random.default_rng(0x2023_03_26)
 
@@ -34,6 +34,16 @@ def main():
     print(N.shape)
     print()
     print(np.matmul(M, N))
+
+
+def main(N=16):
+    _rng = np.random.default_rng(0x2023_03_26)
+
+    A = _rng.normal(3.0, 2.5, size=(N, N)).astype(np.float32)
+    B = _rng.normal(2.0, 1.5, size=(N, N)).astype(np.float32)
+
+    np.save("A.npy", A)
+    np.save("B.npy", B)
 
 
 if __name__ == "__main__":

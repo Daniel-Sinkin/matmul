@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-static const int N = 4;
+static const int N = 512;
 
 #define BLOCK_SIZE 4
 
@@ -69,6 +69,7 @@ int main() {
         }
     }
 
+    uint64_t end = nanos();
     printf("A:\n");
     matrixPrint(A, N, N);
     printf("B:\n");
@@ -76,7 +77,6 @@ int main() {
     printf("C:\n");
     matrixPrint(C, N, N);
     
-    uint64_t end = nanos();
     double gfloppies = (2.0 * N * N * N) * 1e-9;
 
     double s = (end-start) * 1e-9;
